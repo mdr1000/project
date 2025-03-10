@@ -6,13 +6,14 @@
 #-------------------------------------------------------------------------------------------------------------------------------------
 
 OPENVPN_VERSION="2.6.13"
-OPENVPN_FOLDER_CONFIG="/etc/prometheus"
-OPENVPN_FOLDER_TSDATA="/etc/prometheus/data"
+OPENVPN_FOLDER_CONFIG="/etc/openvpn"
 
 cd /tmp
 wget https://github.com/OpenVPN/openvpn/releases/download/v$OPENVPN_VERSION/openvpn-$OPENVPN_VERSION.tar.gz
-tar xvfz openvpn-$PROMETHEUS_VERSION.tar.gz
-cd openvpn-$PROMETHEUS_VERSION
+tar xvfz openvpn-$OPENVPN_VERSION.tar.gz
+cd openvpn-$OPENVPN_VERSION
 
-mv openvpn-$PROMETHEUS_VERSION /etc/openvpn
+mkdir -p $OPENVPN_FOLDER_CONFIG
+
+mv openvpn-$OPENVPN_VERSION $OPENVPN_FOLDER_CONFIG
 rm -rf /tmp/openvpn*
