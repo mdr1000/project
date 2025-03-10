@@ -5,9 +5,6 @@
 # Developed by Damir Mullagaliev in 2025
 #-------------------------------------------------------------------------------------------------------------------------------------
 
-OPENVPN_VERSION="2.6.13"
+apt-get update
 
-wget https://github.com/OpenVPN/openvpn/releases/download/v$OPENVPN_VERSION/openvpn-$OPENVPN_VERSION.tar.gz
-tar xvfz openvpn-$OPENVPN_VERSION.tar.gz
- 
-rm -rf openvpn-$OPENVPN_VERSION.tar.gz
+Y | apt-get install openvpn
