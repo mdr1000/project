@@ -7,4 +7,4 @@
 
 apt-get update
 
-Y | apt-get install openvpn
+yes | apt-get install openvpn
