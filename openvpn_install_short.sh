@@ -1,18 +1,15 @@
 #!/bin/bash
 
-#-------------------------------------------------------------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------------------
 # Script to install OpenVPN server on Linux Ubuntu 24.04
 # Developed by Damir Mullagaliev in 2025
-#-------------------------------------------------------------------------------------------------------------------------------------
-
-OPENVPN_FOLDER_CONFIG=/etc/openvpn
+#-------------------------------------------------------------------------------------------
 
 apt-get update
-Y | apt-get install openvpn
-Y | apt-get install easy-rsa
+yes Y | apt-get install openvpn
+yes Y | apt-get install easy-rsa
 
-mkdir $OPENVPN_FOLDER_CONFIG/server
-touch $OPENVPN_FOLDER_CONFIG/server/server.conf
+mkdir /etc/openvpn/server
 
 cat <<EOF> /etc/openvpn/server/server.conf
 port 1194
@@ -40,14 +37,15 @@ verb 3
 explicit-exit-notify 1
 EOF
 
-
 useradd -rs /bin/false openvpn
 chown openvpn:openvpn /usr/sbin/openvpn
-chown openvpn:openvpn $OPENVPN_FOLDER_CONFIG
+chown openvpn:openvpn /etc/openvpn
 
-
-systemctl daemon-reload
-systemctl start openvpn
-systemctl enable openvpn
 systemctl status openvpn
 openvpn --version
+
+/usr/sbin/openvpn --genkey --secret ta.key
+mv ta.key /etc/openvpn/server
+
+ifconfig
+echo "Please watching eth, proto, port and add, when you starting iptables configuration script"
